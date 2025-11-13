@@ -25,6 +25,10 @@ import CalculadoraSureBet from 'ui/Usuario/servicios/calculadora-sure-bet/Calcul
 
 import CalculadoraRuleta from 'ui/Usuario/servicios/calculadora-ruleta/CalculadoraRuleta';
 
+import Bankroll from 'ui/Usuario/servicios/bankroll/GestorBankroll';
+
+
+
 
 // UIS ADMIN
 // import ListarRoles from 'ui/Administrador/roles/listarRoles/ListarRoles';
@@ -57,6 +61,11 @@ function AppContent() {
       <Route
         path="/calculadora-ruleta"
         element={<CalculadoraRuleta />}
+      />
+
+      <Route
+        path="/bankroll"
+        element={<Bankroll />}
       />
 
 
