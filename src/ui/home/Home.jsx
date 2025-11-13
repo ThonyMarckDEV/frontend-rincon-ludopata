@@ -15,11 +15,11 @@ function Home() {
             enlace: '/caluladora-sure-bet', // Esta es la ruta a la que navegará
         },
         {
-            id: 'cuotas',
-            emoji: '📊',
-            titulo: 'Calculadora de Cuotas',
-            descripcion: 'Convierte probabilidades a cuotas (Decimal, USA, Fracción).',
-            enlace: '/cuotas', // Ruta (aún no creada)
+            id: 'ruleta',
+            emoji: '🎰',
+            titulo: 'Calculadora de Ruleta',
+            descripcion: 'Registra giros y calcula probabilidades (rojo/azul/amarillo).',
+            enlace: '/calculadora-ruleta', // Nueva ruta
         },
         {
             id: 'bankroll',

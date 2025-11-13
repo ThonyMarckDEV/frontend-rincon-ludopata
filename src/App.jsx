@@ -23,6 +23,8 @@ import Home from 'ui/home/Home';
 //UIS SERVICIOS
 import CalculadoraSureBet from 'ui/Usuario/servicios/calculadora-sure-bet/CalculadoraSureBet';
 
+import CalculadoraRuleta from 'ui/Usuario/servicios/calculadora-ruleta/CalculadoraRuleta';
+
 
 // UIS ADMIN
 // import ListarRoles from 'ui/Administrador/roles/listarRoles/ListarRoles';
@@ -51,6 +53,12 @@ function AppContent() {
         path="/caluladora-sure-bet"
         element={<CalculadoraSureBet />}
       />
+
+      <Route
+        path="/calculadora-ruleta"
+        element={<CalculadoraRuleta />}
+      />
+
 
       {/* Ruta de error */}
       <Route path="/*" element={<ErrorPage404 />} />
