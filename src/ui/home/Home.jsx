@@ -22,6 +22,13 @@ function Home() {
             enlace: '/calculadora-ruleta', // Nueva ruta
         },
         {
+            id: 'blackjack',
+            emoji: '🃏',
+            titulo: 'Calculadora de Blackjack',
+            descripcion: 'Calcula probabilidades y estrategias para Blackjack.',
+            enlace: '/caluladora-blackjack', // Nueva ruta
+        },
+        {
             id: 'bankroll',
             emoji: '💰',
             titulo: 'Gestor de Bankroll',

@@ -27,7 +27,7 @@ import CalculadoraRuleta from 'ui/Usuario/servicios/calculadora-ruleta/Calculado
 
 import Bankroll from 'ui/Usuario/servicios/bankroll/GestorBankroll';
 
-
+import CalculadoraBlackjack from 'ui/Usuario/servicios/calculadora-blackjack/CalculadoraBlackjack';
 
 
 // UIS ADMIN
@@ -68,6 +68,10 @@ function AppContent() {
         element={<Bankroll />}
       />
 
+      <Route
+        path="/caluladora-blackjack"
+        element={<CalculadoraBlackjack />}
+      />
 
       {/* Ruta de error */}
       <Route path="/*" element={<ErrorPage404 />} />
