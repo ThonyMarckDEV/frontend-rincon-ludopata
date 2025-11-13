@@ -1,6 +1,7 @@
 import React from 'react';
 // 1. Importa Link para la navegación
 import { Link } from 'react-router-dom';
+import logo from '../../assets/img/logo.png'; // <-- Asegúrate de que la ruta a tu logo sea correcta
 
 // 2. Ya no recibe { setVista }
 function Home() {
@@ -42,6 +43,21 @@ function Home() {
         <div className="bg-gray-950 text-gray-200 min-h-screen p-8">
             <div className="max-w-4xl mx-auto">
                 
+                {/* --- ESPACIO PARA EL LOGO (CORREGIDO) --- */}
+                <div className="flex justify-center mb-6">
+                    
+                    {/* Contenedor ahora cuadrado (rounded-2xl) para que coincida con la imagen.
+                      overflow-hidden asegura que la imagen se recorte a los bordes redondeados.
+                    */}
+                    <div className="w-48 h-48 bg-gray-800 rounded-2xl flex items-center justify-center border-4 border-amber-500 overflow-hidden">
+                        {/* object-cover hace que la imagen (cuadrada) llene el contenedor (cuadrado) 
+                          sin distorsionarse.
+                        */}
+                        <img src={logo} alt="Logo Rincón" className="w-full h-full object-cover" />
+                    </div>
+                </div>
+                {/* --- FIN ESPACIO PARA EL LOGO --- */}
+                
                 {/* Título en color ámbar/dorado */}
                 <h1 className="text-4xl font-bold text-center mb-4 text-amber-400">
                     Rincón del Ludopata
@@ -60,8 +76,8 @@ function Home() {
                             to={servicio.enlace} 
                             key={servicio.id}
                             className="block bg-gray-900 p-6 rounded-lg shadow-lg 
-                                       transform transition-transform hover:scale-105 
-                                       border border-gray-700 hover:border-amber-500" // Hover en ámbar
+                                        transform transition-transform hover:scale-105 
+                                        border border-gray-700 hover:border-amber-500" // Hover en ámbar
                         >
                             <div className="text-4xl mb-4">{servicio.emoji}</div>
                             {/* Título de la tarjeta en blanco para más contraste */}
