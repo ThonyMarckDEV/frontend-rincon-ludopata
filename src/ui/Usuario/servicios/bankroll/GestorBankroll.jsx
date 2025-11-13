@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useBankRollManager } from './useBankrollManager'; // Importa la lógica
 
-// --- COMPONENTES INTERNOS MOVIDOS AFUERA ---
-
-// Componente para formatear la fecha
+// --- COMPONENTES INTERNOS ---
+// Componente para formatear la fecha (Sin cambios)
 const FormatoFecha = ({ isoString }) => {
     const fecha = new Date(isoString);
     return fecha.toLocaleString('es-ES', {
@@ -16,8 +15,7 @@ const FormatoFecha = ({ isoString }) => {
     });
 };
 
-// Componente del Formulario de Capital Inicial
-// Recibe los props necesarios
+// Componente del Formulario de Capital Inicial (Sin cambios)
 const FormularioCapital = ({ handleSetCapital, monto, setMonto, error }) => (
     <form onSubmit={handleSetCapital} className="w-full max-w-lg bg-gray-900 p-6 sm:p-8 rounded-xl shadow-lg border border-gray-700">
         <h2 className="text-2xl font-bold text-center text-amber-400 mb-6">
@@ -55,39 +53,36 @@ const FormularioCapital = ({ handleSetCapital, monto, setMonto, error }) => (
     </form>
 );
 
-// Componente del Gestor Principal (cuando ya hay capital)
-// Recibe todos los props que necesita
+// Componente del Gestor Principal (MODIFICADO)
 const GestorPrincipal = ({
     monto, setMonto,
     descripcion, setDescripcion,
     error,
     stats,
     historial,
-    agregarTransaccion,
+    agregarTransaccion, // <-- Esta es la nueva función
     limpiarRegistros
 }) => {
-    // El estado de la pestaña ahora vive dentro de ESTE componente
     const [pestañaActiva, setPestañaActiva] = useState('stats');
-
     return (
         <div className="w-full max-w-4xl space-y-6">
             
             {/* --- SECCIÓN DE REGISTRO --- */}
             <div className="bg-gray-900 p-6 sm:p-8 rounded-xl shadow-lg border border-gray-700">
                 <h2 className="text-2xl font-bold text-amber-400 mb-6">
-                    Registrar Movimiento
+                    Registrar Nuevo Saldo
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    {/* Monto */}
+                    {/* Monto (Ahora es Nuevo Saldo) */}
                     <div className="md:col-span-1">
                         <label htmlFor="monto" className="block text-sm font-medium text-gray-400 mb-1">
-                            Monto
+                            Nuevo Saldo Total
                         </label>
                         <input 
                             type="number" 
                             id="monto" 
                             value={monto}
-                            placeholder="Ej: 50"
+                            placeholder="Ej: 1007" // <-- Placeholder cambiado
                             onChange={(e) => setMonto(e.target.value)}
                             className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md shadow-sm focus:ring-amber-500 focus:border-amber-500 text-lg text-white placeholder-gray-500"
                         />
@@ -101,25 +96,19 @@ const GestorPrincipal = ({
                             type="text" 
                             id="descripcion" 
                             value={descripcion}
-                            placeholder="Ej: Apuesta 1 - NBA Lakers"
+                            placeholder="Ej: Resultado Surebet #1"
                             onChange={(e) => setDescripcion(e.target.value)}
                             className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md shadow-sm focus:ring-amber-500 focus:border-amber-500 text-lg text-white placeholder-gray-500"
                         />
                     </div>
                 </div>
-                {/* Botones */}
+                {/* Botones (AHORA SOLO UNO) */}
                 <div className="flex gap-4 mt-4">
                     <button 
-                        onClick={() => agregarTransaccion('ganancia')}
-                        className="w-full bg-green-600 text-white font-bold py-3 px-4 rounded-md text-lg hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition-colors duration-200"
+                        onClick={agregarTransaccion} // <-- Llama a la nueva función
+                        className="w-full bg-amber-500 text-gray-900 font-bold py-3 px-4 rounded-md text-lg hover:bg-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition-colors duration-200"
                     >
-                        Registrar Ganancia
-                    </button>
-                    <button 
-                        onClick={() => agregarTransaccion('perdida')}
-                        className="w-full bg-red-600 text-white font-bold py-3 px-4 rounded-md text-lg hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition-colors duration-200"
-                    >
-                        Registrar Pérdida
+                        Registrar Saldo
                     </button>
                 </div>
                 {error && (
@@ -128,8 +117,9 @@ const GestorPrincipal = ({
                     </p>
                 )}
             </div>
-
             {/* --- SECCIÓN DE ESTADÍSTICAS E HISTORIAL --- */}
+            {/* (Esta sección no necesita cambios, ya que 'stats' e 'historial'
+                 siguen funcionando igual) */}
             <div className="bg-gray-900 p-6 sm:p-8 rounded-xl shadow-lg border border-gray-700">
                 {/* Pestañas */}
                 <div className="flex border-b border-gray-700 mb-6">
@@ -146,41 +136,33 @@ const GestorPrincipal = ({
                         Historial de Movimientos ({stats.totalMovimientos})
                     </button>
                 </div>
-
-                {/* Contenido de Pestañas */}
+                {/* Contenido de Pestañas (Sin cambios) */}
                 {pestañaActiva === 'stats' ? (
                     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                        {/* Capital Actual */}
                         <div className="col-span-2 lg:col-span-4 bg-gray-800 p-4 rounded-lg text-center">
                             <p className="text-sm font-medium text-amber-400">CAPITAL ACTUAL</p>
                             <p className="text-4xl font-bold text-white">{stats.capitalActual}</p>
                         </div>
-                        {/* Beneficio Neto */}
                         <div className={`col-span-2 p-4 rounded-lg text-center ${parseFloat(stats.beneficioNeto) >= 0 ? 'bg-green-900' : 'bg-red-900'}`}>
                             <p className="text-sm font-medium text-gray-300">Beneficio Neto</p>
                             <p className="text-3xl font-bold text-white">{stats.beneficioNeto}</p>
                         </div>
-                        {/* ROI */}
                         <div className={`col-span-2 p-4 rounded-lg text-center ${parseFloat(stats.roi) >= 0 ? 'bg-green-900' : 'bg-red-900'}`}>
                             <p className="text-sm font-medium text-gray-300">ROI (Retorno)</p>
                             <p className="text-3xl font-bold text-white">{stats.roi} %</p>
                         </div>
-                        {/* Capital Inicial */}
                         <div className="bg-gray-800 p-4 rounded-lg text-center">
                             <p className="text-sm font-medium text-gray-400">Capital Inicial</p>
                             <p className="text-2xl font-bold text-white">{stats.capitalInicial}</p>
                         </div>
-                        {/* Total Ganado */}
                         <div className="bg-gray-800 p-4 rounded-lg text-center">
                             <p className="text-sm font-medium text-gray-400">Total Ganado</p>
                             <p className="text-2xl font-bold text-green-400">+{stats.totalGanado}</p>
                         </div>
-                        {/* Total Perdido */}
                         <div className="bg-gray-800 p-4 rounded-lg text-center">
                             <p className="text-sm font-medium text-gray-400">Total Perdido</p>
                             <p className="text-2xl font-bold text-red-400">-{stats.totalPerdido}</p>
                         </div>
-                        {/* Movimientos */}
                         <div className="bg-gray-800 p-4 rounded-lg text-center">
                             <p className="text-sm font-medium text-gray-400">Movimientos</p>
                             <p className="text-2xl font-bold text-white">{stats.totalMovimientos}</p>
@@ -210,7 +192,7 @@ const GestorPrincipal = ({
                 )}
             </div>
             
-            {/* Botón de Limpiar */}
+            {/* Botón de Limpiar (Sin cambios) */}
             <div className="text-center">
                 <button
                     onClick={limpiarRegistros}
@@ -219,17 +201,14 @@ const GestorPrincipal = ({
                     Borrar todo el registro y reiniciar
                 </button>
             </div>
-
         </div>
     );
 };
 
-
 // --- COMPONENTE PRINCIPAL ---
-// Ahora solo llama al hook y pasa los props
+// (Sin cambios aquí, solo pasa los props)
 function GestorBankroll() {
     
-    // Llama al hook que maneja toda la lógica
     const {
         monto,
         setMonto,
@@ -239,12 +218,10 @@ function GestorBankroll() {
         stats,
         historial,
         handleSetCapital,
-        agregarTransaccion,
+        agregarTransaccion, // <-- Pasa la nueva función
         limpiarRegistros,
         tieneCapitalInicial,
-    } = useBankRollManager(); // <--- CORRECCIÓN AQUÍ TAMBIÉN
-
-
+    } = useBankRollManager();
     return (
         <div className="bg-gray-950 min-h-screen p-4 sm:p-8 flex flex-col items-center text-gray-200">
             <div className="w-full max-w-4xl mb-4">
@@ -252,14 +229,9 @@ function GestorBankroll() {
                     to="/"
                     className="text-amber-400 hover:text-amber-300 font-semibold"
                 >
-                    &larr; Volver al Home
+                    ← Volver al Home
                 </Link>
             </div>
-
-            {/* Renderizado Condicional
-              Ahora React ve FormularioCapital y GestorPrincipal como componentes
-              constantes y no los destruirá al escribir en el input.
-            */}
             {!tieneCapitalInicial ? (
                 <FormularioCapital 
                     handleSetCapital={handleSetCapital}
