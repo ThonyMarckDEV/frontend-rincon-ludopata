@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 
 // Layout
-import SidebarLayout from 'layouts/SidebarLayout';
+// import SidebarLayout from 'layouts/SidebarLayout';
 
 // UIS AUTH
 import ErrorPage404 from 'components/ErrorPage404';
