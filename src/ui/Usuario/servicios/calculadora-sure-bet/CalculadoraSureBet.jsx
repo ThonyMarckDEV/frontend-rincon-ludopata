@@ -1,12 +1,9 @@
 import React from 'react';
-// 1. Importa Link
 import { Link } from 'react-router-dom';
-import { useCalculadora } from './useCalculadora'; // Tu hook de lógica
-// 2. Ya no necesitas importar './Calculadora.css'
+import { useCalculadora } from './useCalculadora'; 
 
 function CalculadoraSurebet() {
     
-    // La lógica del hook permanece idéntica
     const {
         cuota1, setCuota1,
         cuota2, setCuota2,
@@ -16,10 +13,8 @@ function CalculadoraSurebet() {
     } = useCalculadora();
 
     return (
-        // Wrapper principal: fondo gris, centrado y con padding
         <div className="bg-gray-100 min-h-screen p-4 sm:p-8 flex flex-col items-center">
             
-            {/* Contenedor para el enlace "Volver" (alineado con la tarjeta) */}
             <div className="w-full max-w-lg mb-4">
                 <Link 
                     to="/"
@@ -29,16 +24,13 @@ function CalculadoraSurebet() {
                 </Link>
             </div>
 
-            {/* La Tarjeta principal (el 'container' de antes) */}
             <div className="w-full max-w-lg bg-white p-6 sm:p-8 rounded-xl shadow-lg">
                 
                 <h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-800 mb-6">
                     Calculadora Surebet
                 </h2>
                 
-                {/* --- Formulario --- */}
                 <div className="space-y-4">
-                    {/* Input 1 */}
                     <div>
                         <label htmlFor="cuota1" className="block text-sm font-medium text-gray-700 mb-1">
                             Cuota 1 (Ej: 2.5)
@@ -52,7 +44,6 @@ function CalculadoraSurebet() {
                         />
                     </div>
                     
-                    {/* Input 2 */}
                     <div>
                         <label htmlFor="cuota2" className="block text-sm font-medium text-gray-700 mb-1">
                             Cuota 2 (Ej: 1.8)
@@ -66,7 +57,6 @@ function CalculadoraSurebet() {
                         />
                     </div>
                     
-                    {/* Input 3 */}
                     <div>
                         <label htmlFor="montoTotal" className="block text-sm font-medium text-gray-700 mb-1">
                             Cantidad Total a Apostar (Ej: 100)
@@ -81,7 +71,6 @@ function CalculadoraSurebet() {
                     </div>
                 </div>
 
-                {/* Botón de Calcular */}
                 <button 
                     onClick={handleCalcular}
                     className="w-full bg-blue-600 text-white font-bold py-3 px-4 rounded-md text-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200 mt-6"
@@ -89,17 +78,14 @@ function CalculadoraSurebet() {
                     Calcular
                 </button>
 
-                {/* --- Sección de Resultados --- */}
                 <div className="mt-6 pt-6 border-t border-gray-200">
                     
-                    {/* Mensaje de Error */}
                     {error && (
                         <p className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-md font-medium">
                             {error}
                         </p>
                     )}
                     
-                    {/* Mensaje de Éxito */}
                     {resultado && (
                         <div className="space-y-3">
                             <p className="text-md text-gray-800">
@@ -117,7 +103,6 @@ function CalculadoraSurebet() {
                             
                             <hr className="my-4"/>
                             
-                            {/* Resultado Final (Ganancia) */}
                             <div className="bg-green-50 border border-green-200 p-4 rounded-lg text-center">
                                 <p className="text-sm font-medium text-green-800">Ganancia Total (Pago)</p>
                                 <p className="text-2xl font-bold text-green-700">
@@ -125,13 +110,21 @@ function CalculadoraSurebet() {
                                 </p>
                             </div>
 
-                            {/* Beneficio Neto */}
+                             {/* --- BLOQUE MODIFICADO --- */}
                              <div className="bg-gray-50 p-3 rounded-lg text-center mt-2">
                                 <p className="text-sm font-medium text-gray-600">Beneficio Neto (Residuo)</p>
-                                <p className="text-xl font-bold text-gray-800">
-                                    {resultado.beneficioNeto}
-                                </p>
+                                <div className="flex items-baseline justify-center space-x-2">
+                                    <p className="text-xl font-bold text-gray-800">
+                                        {resultado.beneficioNeto}
+                                    </p>
+                                    {/* --- LÍNEA NUEVA --- */}
+                                    <span className="text-lg font-bold text-green-600">
+                                        (+{resultado.beneficioPorcentaje}%)
+                                    </span>
+                                </div>
                             </div>
+                            {/* --- FIN DEL BLOQUE MODIFICADO --- */}
+
                         </div>
                     )}
                 </div>

@@ -34,7 +34,7 @@ function Home() {
         <div className="bg-gray-900 text-white min-h-screen p-8">
             <div className="max-w-4xl mx-auto">
                 <h1 className="text-4xl font-bold text-center mb-4">
-                    Rincón del Estratega
+                    Rincón del Ludopata
                 </h1>
                 <p className="text-lg text-gray-400 text-center mb-12">
                     Tus herramientas para tomar mejores decisiones.
