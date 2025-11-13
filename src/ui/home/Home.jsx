@@ -31,11 +31,15 @@ function Home() {
     ];
 
     return (
-        <div className="bg-gray-900 text-white min-h-screen p-8">
+        // Fondo principal oscuro (como en la calculadora)
+        <div className="bg-gray-950 text-gray-200 min-h-screen p-8">
             <div className="max-w-4xl mx-auto">
-                <h1 className="text-4xl font-bold text-center mb-4">
+                
+                {/* Título en color ámbar/dorado */}
+                <h1 className="text-4xl font-bold text-center mb-4 text-amber-400">
                     Rincón del Ludopata
                 </h1>
+                
                 <p className="text-lg text-gray-400 text-center mb-12">
                     Tus herramientas para tomar mejores decisiones.
                 </p>
@@ -44,18 +48,17 @@ function Home() {
                     
                     {/* 4. Mapeamos los servicios */}
                     {servicios.map((servicio) => (
-                        // 5. Cada tarjeta AHORA es un componente <Link>
-                        // que dirige a la ruta definida en 'servicio.enlace'
+                        // 5. Tarjeta con estilo oscuro y hover dorado
                         <Link 
                             to={servicio.enlace} 
                             key={servicio.id}
-                            className="block bg-gray-800 p-6 rounded-lg shadow-lg 
+                            className="block bg-gray-900 p-6 rounded-lg shadow-lg 
                                        transform transition-transform hover:scale-105 
-                                       border border-gray-700 hover:border-blue-500"
+                                       border border-gray-700 hover:border-amber-500" // Hover en ámbar
                         >
-                            {/* Quitamos el onClick y el cursor-pointer (Link ya lo maneja) */}
                             <div className="text-4xl mb-4">{servicio.emoji}</div>
-                            <h3 className="text-xl font-semibold mb-2">{servicio.titulo}</h3>
+                            {/* Título de la tarjeta en blanco para más contraste */}
+                            <h3 className="text-xl font-semibold mb-2 text-white">{servicio.titulo}</h3>
                             <p className="text-gray-400">{servicio.descripcion}</p>
                         </Link>
                     ))}
