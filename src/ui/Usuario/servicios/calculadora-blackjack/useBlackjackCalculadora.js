@@ -172,7 +172,7 @@ export const useCardCounter = () => {
         localStorage.setItem(COUNTER_STORAGE_KEY, JSON.stringify(state));
     }, [state]);
 
-    const { runningCount, decksRemaining, trueCount, stats } = useMemo(() => {
+    const { runningCount, trueCount, stats } = useMemo(() => {
         const rc = dealtCards.reduce((count, card) => count + (hiLoValues[card] || 0), 0);
         const totalCards = numDecks * 52;
         const cardsRemaining = totalCards - dealtCards.length;
